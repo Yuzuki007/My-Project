@@ -40,7 +40,8 @@ export type WidgetId =
   | "linkedin"
   | "msn"
   | "cnn"
-  | "weather";
+  | "weather"
+  | "messenger";
 
 export type Theme = "system" | "light" | "dark";
 

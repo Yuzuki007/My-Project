@@ -20,6 +20,7 @@ import { CalendarWidget } from "./components/CalendarWidget";
 import { EmailWidget } from "./components/EmailWidget";
 import { LinkedInWidget } from "./components/LinkedInWidget";
 import { LogoIcon } from "./components/LogoIcon";
+import { MessengerWidget } from "./components/MessengerWidget";
 import { Modal } from "./components/Modal";
 import { NewsWidget } from "./components/NewsWidget";
 import { SettingsPanel } from "./components/SettingsPanel";
@@ -46,6 +47,7 @@ const widgetLabels: Record<WidgetId, string> = {
   personalCalendar: "Personal Calendar",
   teams: "Teams",
   linkedin: "LinkedIn",
+  messenger: "Messenger",
   msn: "MSN",
   cnn: "CNN",
   weather: "Weather",
@@ -107,6 +109,8 @@ function App() {
         return <TeamsWidget contacts={teamsContacts} onClick={onClick} />;
       case "linkedin":
         return <LinkedInWidget onClick={onClick} />;
+      case "messenger":
+        return <MessengerWidget onClick={onClick} />;
       case "msn":
         return (
           <NewsWidget
