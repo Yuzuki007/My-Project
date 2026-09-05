@@ -1,8 +1,11 @@
+import teamsLogo from "../assets/teams-logo.png";
 import type { TeamsContact } from "../types";
+import { LogoIcon } from "./LogoIcon";
 import { WidgetCard } from "./WidgetCard";
 
 interface TeamsWidgetProps {
   contacts: TeamsContact[];
+  onClick?: () => void;
 }
 
 const statusColors: Record<TeamsContact["status"], string> = {
@@ -12,9 +15,9 @@ const statusColors: Record<TeamsContact["status"], string> = {
   offline: "#8a8a8a",
 };
 
-export function TeamsWidget({ contacts }: TeamsWidgetProps) {
+export function TeamsWidget({ contacts, onClick }: TeamsWidgetProps) {
   return (
-    <WidgetCard title="Teams" icon="💬">
+    <WidgetCard title="Teams" icon={<LogoIcon src={teamsLogo} alt="Teams" />} onClick={onClick}>
       <ul className="widget-list">
         {contacts.map((contact) => (
           <li key={contact.id}>

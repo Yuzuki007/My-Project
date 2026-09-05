@@ -1,16 +1,19 @@
+import type { ReactNode } from "react";
 import type { EmailItem } from "../types";
 import { WidgetCard } from "./WidgetCard";
 
 interface EmailWidgetProps {
   title: string;
+  icon: ReactNode;
   emails: EmailItem[];
+  onClick?: () => void;
 }
 
-export function EmailWidget({ title, emails }: EmailWidgetProps) {
+export function EmailWidget({ title, icon, emails, onClick }: EmailWidgetProps) {
   const unreadCount = emails.filter((email) => email.unread).length;
 
   return (
-    <WidgetCard title={title} icon="📧">
+    <WidgetCard title={title} icon={icon} onClick={onClick}>
       <p className="widget-summary">{unreadCount} unread</p>
       <ul className="widget-list">
         {emails.map((email) => (

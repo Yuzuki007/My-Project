@@ -1,4 +1,10 @@
-import type { CalendarEvent, EmailItem, TeamsContact } from "./types";
+import type {
+  CalendarEvent,
+  EmailItem,
+  NewsItem,
+  TeamsContact,
+  WeatherData,
+} from "./types";
 
 export const workEmails: EmailItem[] = [
   { id: "w1", sender: "Manager", subject: "Project update needed", unread: true },
@@ -26,3 +32,23 @@ export const teamsContacts: TeamsContact[] = [
   { id: "t2", name: "Sarah", status: "busy" },
   { id: "t3", name: "Mike", status: "away" },
 ];
+
+export const msnHeadlines: NewsItem[] = [
+  { id: "msn1", headline: "Markets rally as tech stocks surge", category: "Money" },
+  { id: "msn2", headline: "New study reveals surprising sleep habits", category: "Health" },
+  { id: "msn3", headline: "Local team wins championship in overtime thriller", category: "Sports" },
+];
+
+export const cnnHeadlines: NewsItem[] = [
+  { id: "cnn1", headline: "World leaders meet for climate summit", category: "World" },
+  { id: "cnn2", headline: "Breaking: Major policy announcement expected today", category: "Politics" },
+  { id: "cnn3", headline: "Tech company unveils new AI product", category: "Business" },
+];
+
+export const weatherMock: WeatherData = {
+  location: "Your City",
+  condition: "Partly Cloudy",
+  tempF: 78,
+  highF: 82,
+  lowF: 65,
+};
