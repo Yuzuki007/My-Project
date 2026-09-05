@@ -1,0 +1,31 @@
+1. Invite your friend (you do this)
+
+On that page, click "Add people", then type your friend's GitHub username (or the email tied to their GitHub account) and send the invite. They'll need a GitHub account first — if they don't have one, it takes 2 minutes to sign up.
+
+They'll get an email/notification to accept the invite. Once accepted, they have write access — meaning they can push branches and open pull requests.
+
+2. Your friend clones the project (they do this)
+
+On their own machine, with Git installed:
+git clone https://github.com/Yuzuki007/My-Project.git
+cd My-Project/life-dashboard
+npm install
+npm run dev
+That gets them the exact same dashboard running locally.
+
+3. How you two should actually collaborate (recommended workflow)
+
+Since you're both learning, I'd recommend never pushing directly to main from here on — instead:
+
+- Each of you creates a branch for whatever you're working on:
+git checkout -b add-weather-real-api
+- Make changes, commit, push the branch:
+git add .
+git commit -m "describe what changed"
+git push -u origin add-weather-real-api
+- On GitHub, open a Pull Request from that branch into main
+- The other person reviews it (reads the diff, leaves comments, approves) before it gets merged
+
+This mirrors real professional workflows (exactly what GPT's roadmap mentioned — PRs, code review, branches), so it doubles as practice for your career goals. It also prevents you two from accidentally overwriting each other's work.
+
+Want me to set up branch protection on main (requires a PR + review before anything merges, so nobody can accidentally push straight to main)? That's an optional extra safety net, one click away on GitHub.
