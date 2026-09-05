@@ -1,31 +1,58 @@
-1. Invite your friend (you do this)
+SYNC365 — CONTRIBUTOR GUIDE
 
-On that page, click "Add people", then type your friend's GitHub username (or the email tied to their GitHub account) and send the invite. They'll need a GitHub account first — if they don't have one, it takes 2 minutes to sign up.
+1. GETTING SET UP
 
-They'll get an email/notification to accept the invite. Once accepted, they have write access — meaning they can push branches and open pull requests.
+You'll need Git and Node.js installed. Then:
 
-2. Your friend clones the project (they do this)
-
-On their own machine, with Git installed:
 git clone https://github.com/Yuzuki007/My-Project.git
 cd My-Project/life-dashboard
 npm install
 npm run dev
-That gets them the exact same dashboard running locally.
 
-3. How you two should actually collaborate (recommended workflow)
+Open the URL it prints (usually http://localhost:5173/) in your browser.
+That's the dashboard running on your own machine.
 
-Since you're both learning, I'd recommend never pushing directly to main from here on — instead:
+2. IMPORTANT: you cannot push directly to "main"
 
-- Each of you creates a branch for whatever you're working on:
+The "main" branch is protected. If you try to push straight to it,
+GitHub will reject it. This isn't a bug — it's intentional, so nothing
+gets changed without being reviewed first. Every change has to go
+through a Pull Request (PR) instead. See the workflow below.
+
+3. WORKFLOW — do this for every change, big or small
+
+Step 1 — Make sure you're up to date before starting anything new:
+git checkout main
+git pull
+
+Step 2 — Create a new branch for what you're about to work on
+(use a short, descriptive name):
 git checkout -b add-weather-real-api
-- Make changes, commit, push the branch:
+
+Step 3 — Make your changes, then commit them:
 git add .
-git commit -m "describe what changed"
+git commit -m "short description of what you changed"
+
+Step 4 — Push your branch to GitHub:
 git push -u origin add-weather-real-api
-- On GitHub, open a Pull Request from that branch into main
-- The other person reviews it (reads the diff, leaves comments, approves) before it gets merged
 
-This mirrors real professional workflows (exactly what GPT's roadmap mentioned — PRs, code review, branches), so it doubles as practice for your career goals. It also prevents you two from accidentally overwriting each other's work.
+Step 5 — On GitHub, open a Pull Request from your branch into "main".
+GitHub will show a link to do this right after you push.
 
-Want me to set up branch protection on main (requires a PR + review before anything merges, so nobody can accidentally push straight to main)? That's an optional extra safety net, one click away on GitHub.
+Step 6 — Wait for review. The PR can't be merged until it's approved.
+Once approved, either person can click "Merge".
+
+4. A FEW GROUND RULES
+
+- One branch = one feature/fix. Don't mix unrelated changes in one PR.
+- Write commit messages that explain WHY, not just what
+  (e.g. "Fix weather widget crash on empty location" not "fix bug").
+- If GitHub shows a merge conflict on your PR, ask before force-pushing
+  anything — conflicts are normal and easy to resolve together.
+- Never run "git push --force" on a shared branch unless you both agree.
+
+5. QUESTIONS?
+
+Ask before guessing on anything related to git commands you're unsure
+about — a wrong command (especially "reset", "checkout .", or "clean")
+can discard work. It's always safer to ask first.
