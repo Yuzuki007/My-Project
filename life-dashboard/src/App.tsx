@@ -12,9 +12,9 @@ import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortab
 import { useState } from "react";
 import "./App.css";
 import cnnLogo from "./assets/cnn-logo.png";
+import gmaNewsLogo from "./assets/gma-news-logo.png";
 import gmailLogo from "./assets/gmail-logo.png";
 import googleCalendarLogo from "./assets/google-calendar-logo.png";
-import msnLogo from "./assets/msn-logo.png";
 import outlookLogo from "./assets/outlook-logo.png";
 import { CalendarWidget } from "./components/CalendarWidget";
 import { EmailWidget } from "./components/EmailWidget";
@@ -28,17 +28,17 @@ import { SortableTile } from "./components/SortableTile";
 import { TeamsWidget } from "./components/TeamsWidget";
 import { WeatherWidget } from "./components/WeatherWidget";
 import {
-  cnnHeadlines,
-  msnHeadlines,
   personalCalendar,
   personalEmails,
   teamsContacts,
-  weatherMock,
   workCalendar,
   workEmails,
 } from "./mockData";
 import type { WidgetId } from "./types";
+import { useCnnNews } from "./useCnnNews";
+import { useGmaNews } from "./useGmaNews";
 import { useSettings } from "./useSettings";
+import { useWeather } from "./useWeather";
 
 const widgetLabels: Record<WidgetId, string> = {
   workEmail: "Work Email",
@@ -48,13 +48,16 @@ const widgetLabels: Record<WidgetId, string> = {
   teams: "Teams",
   linkedin: "LinkedIn",
   messenger: "Messenger",
-  msn: "MSN",
+  gmaNews: "GMA News",
   cnn: "CNN",
   weather: "Weather",
 };
 
 function App() {
   const { settings, setTheme, toggleWidget, setWidgetOrder } = useSettings();
+  const weather = useWeather();
+  const cnnNews = useCnnNews();
+  const gmaNews = useGmaNews();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [expandedWidget, setExpandedWidget] = useState<WidgetId | null>(null);
   const [activeId, setActiveId] = useState<WidgetId | null>(null);
@@ -111,12 +114,14 @@ function App() {
         return <LinkedInWidget onClick={onClick} />;
       case "messenger":
         return <MessengerWidget onClick={onClick} />;
-      case "msn":
+      case "gmaNews":
         return (
           <NewsWidget
-            title="MSN"
-            icon={<LogoIcon src={msnLogo} alt="MSN" />}
-            headlines={msnHeadlines}
+            title="GMA News"
+            icon={<LogoIcon src={gmaNewsLogo} alt="GMA News" />}
+            headlines={gmaNews.headlines}
+            loading={gmaNews.loading}
+            error={gmaNews.error}
             onClick={onClick}
           />
         );
@@ -125,12 +130,21 @@ function App() {
           <NewsWidget
             title="CNN"
             icon={<LogoIcon src={cnnLogo} alt="CNN" />}
-            headlines={cnnHeadlines}
+            headlines={cnnNews.headlines}
+            loading={cnnNews.loading}
+            error={cnnNews.error}
             onClick={onClick}
           />
         );
       case "weather":
-        return <WeatherWidget weather={weatherMock} onClick={onClick} />;
+        return (
+          <WeatherWidget
+            weather={weather.data}
+            loading={weather.loading}
+            error={weather.error}
+            onClick={onClick}
+          />
+        );
     }
   }
 

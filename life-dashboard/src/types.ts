@@ -23,12 +23,21 @@ export interface NewsItem {
   category: string;
 }
 
+export type SkyCondition = "sunny" | "cloudy" | "rainy" | "thunderstorm";
+
+export interface ForecastHour {
+  id: string;
+  time: string;
+  sky: SkyCondition;
+}
+
 export interface WeatherData {
   location: string;
   condition: string;
-  tempF: number;
-  highF: number;
-  lowF: number;
+  tempC: number;
+  highC: number;
+  lowC: number;
+  forecast: ForecastHour[];
 }
 
 export type WidgetId =
@@ -38,7 +47,7 @@ export type WidgetId =
   | "personalCalendar"
   | "teams"
   | "linkedin"
-  | "msn"
+  | "gmaNews"
   | "cnn"
   | "weather"
   | "messenger";
