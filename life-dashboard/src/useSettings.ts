@@ -11,7 +11,7 @@ const defaultWidgetOrder: WidgetId[] = [
   "teams",
   "linkedin",
   "messenger",
-  "msn",
+  "gmaNews",
   "cnn",
   "weather",
 ];
@@ -26,7 +26,7 @@ const defaultSettings: Settings = {
     teams: true,
     linkedin: true,
     messenger: true,
-    msn: true,
+    gmaNews: true,
     cnn: true,
     weather: true,
   },
